@@ -1,3 +1,80 @@
 body {
+
+}
+
+img {
+    vertical-align: middle;
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+#overlay {
+
+    position: absolute;
+}
+
+#goals {
+    padding: 0 0 0 10px;
+}
+
+#controls-and-rewards {
+    padding: 0 0 0 10px;
+}
+
+#game-name {
     text-align: center;
+}
+
+#game-over {
+    z-index: 5000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#game {
+    text-align: center;
+    position: relative;
+}
+
+#score-and-time {
+    text-align: center;
+}
+
+#playerName {
+    text-align: center;
+}
+
+ul {
+    padding: 0 0 0 10px;
+    text-align: left;
+}
+
+ul li {
+    padding: 10px 0 0 0;
+    list-style-type: none;
 }

@@ -1,6 +1,33 @@
-frontend-nanodegree-arcade-game
-===============================
+Buggy Frogger
+=============
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+[Play the Game](http://rachkoud.github.io/frontend-nanodegree-arcade-game/index.html)
 
-for self-checking their submission.
+##Goals
+![Enemy](/images/enemy-32-32.png) Avoid the bugs!
+
+![Player](/images/char-boy-32-32.png) Get the best score!
+
+##Controls
+
+![Move up](/images/arrow-up.png) Move one step up.
+
+![Move right](/images/arrow-right.png) Move one step right.
+
+![Move down](/images/arrow-right.png) Move one step down.
+
+![Move left](/images/arrow-left.png) Move one step left.
+
+##Rewards
+
+![Destroyed enemy](/images/bug-destroyed-32-32.png) 1 point.
+
+![Green gem](/images/gem-green-32-32.png) 5 point.
+
+![Blue gem](/images/gem-blue-32-32.png) 10 point.
+
+![Orange gem](/images/gem-orange-32-32.png) 15 point.
+
+![Star](/images/star-32-32.png) Destroy enemies.
+
+![More time](/images/more-time-32-32.png) Get more time.
