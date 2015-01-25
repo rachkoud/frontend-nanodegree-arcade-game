@@ -351,16 +351,16 @@ Game.prototype.displayYourLastScoresAndWorlwideBestScores = function() {
     // Display your last scores
     this.yourLastScoresUl = document.querySelector("#your-last-scores");
     this.yourLastScoresUl.innerHTML = '';
-    this.gameStorage.getLocalScores().forEach(function (i) {
-        this.yourLastScoresUl.insertAdjacentHTML('afterbegin', '<li>' + i.name + ' ' + i.score + '</li>');
+    this.gameStorage.getLocalScores().forEach(function (element, index) {
+        this.yourLastScoresUl.insertAdjacentHTML('beforeend', '<li>' + (index+1) + '. ' + element.name + ' ' + element.score + '.</li>');
     }, this);
 
     // Display worldwide best scores
     this.bestScoresUl = document.querySelector("#best-scores");
     this.bestScoresUl.innerHTML = '';
     this.gameStorage.getRemoteScores(function(scores) {
-        scores.forEach(function(i) {
-            this.bestScoresUl.insertAdjacentHTML('afterbegin', '<li>' + i.name + ' ' + i.score + '</li>');
+        scores.forEach(function(element, index) {
+            this.bestScoresUl.insertAdjacentHTML('beforeend', '<li>' + (index+1) + '. ' + element.name + ' ' + element.score + '.</li>');
         }, this);
     }, this);
 }

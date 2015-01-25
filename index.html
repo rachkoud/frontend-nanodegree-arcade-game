@@ -10,36 +10,13 @@
 <body>
     <div id="main" class="pure-g">
         <div id="game-name" class="pure-u-24-24">
-            <h1>Buggy Frogger</h1>
+            <h2>Buggy Frogger - Avoid the enemies and try to get the best score!</h2>
         </div>
-        <div class="pure-u-3-24">
-            <div id="goals">
-                <h3>Goals</h3>
-                <ul id="goals">
-                    <li><img src="images/enemy-32-32.png"> Avoid the bugs!</li>
-                    <li><img src="images/char-boy-32-32.png"> Get the best score!</li>
-                </ul>
+        <div class="pure-u-24-24">
+            <div style="text-align:center;">
+                <img src="images/trophy.png"> Score <span id="score"></span> <img src="images/stopwatch.png"> Time <span id="time"></span>
             </div>
-            <div id="controls-and-rewards">
-                <h3>Controls</h3>
-                <ul id="controls">
-                    <li><img src="images/arrow-up.png"> Move one step up.</li>
-                    <li><img src="images/arrow-right.png"> Move one step right.</li>
-                    <li><img src="images/arrow-right.png"> Move one step down.</li>
-                    <li><img src="images/arrow-left.png"> Move one step left.</li>
-                </ul>
-                <h3>Rewards</h3>
-                <ul id="rewards">
-                    <li><img src="images/bug-destroyed-32-32.png"> 1 point.</li>
-                    <li><img src="images/gem-green-32-32.png"> 5 point.</li>
-                    <li><img src="images/gem-blue-32-32.png"> 10 point.</li>
-                    <li><img src="images/gem-orange-32-32.png"> 15 point.</li>
-                    <li><img src="images/star-32-32.png"> Destroy enemies.</li>
-                    <li><img src="images/more-time-32-32.png"> Get more time.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="pure-u-18-24">
+
             <div id="game">
                 <div id="game-over">
                     <h2>Game over!</h2>
@@ -48,22 +25,22 @@
                     <p><button id="restart" class="button-primary pure-button">Or simply Restart!</button></p>
                 </div>
             </div>
-            <div id="score-and-time">
-                <div class="pure-g">
-                    <div class="pure-u-12-24">
-                        <p><img src="images/trophy.png"> Score <span id="score"></span></p>
-                    </div>
-                    <div class="pure-u-12-24">
-                        <p><img src="images/stopwatch.png"> Time <span id="time"></span></p>
-                    </div>
+            <div id="controls-rewards-scores">
+                <div id="controls">
+                    <img src="images/arrow-left.png"> <img src="images/arrow-up.png"> <img src="images/arrow-down.png"> <img src="images/arrow-right.png"> 
+                    Move <img src="images/char-boy-32-32.png"> one step left, up, down or right and avoid the <img src="images/enemy-32-32.png">.
                 </div>
+                <div id="rewards">
+                    <img src="images/bug-destroyed-32-32.png"> 1 point. <img src="images/gem-green-32-32.png"> 5 point. <img src="images/gem-blue-32-32.png"> 10 point. 
+                    <img src="images/gem-orange-32-32.png"> 15 point. <img src="images/star-32-32.png"> Destroy enemies. <img src="images/more-time-32-32.png"> Get more time.
+                </div>
+                <div id="scores">
+                    <h4>World wide best scores</h4>
+                    <ol id="best-scores"></ol>
+                    <h4>Your last scores</h4>
+                    <ol id="your-last-scores"></ol>
+                <div>
             </div>
-        </div>
-        <div class="pure-u-3-24">
-            <h4>World wide best scores</h4>
-            <ol id="best-scores"></ol>
-            <h4>Your last scores</h4>
-            <ol id="your-last-scores"></ol>
         </div>
     </div>
 
