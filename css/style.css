@@ -31,6 +31,10 @@ img {
     background: rgb(66, 184, 221); /* this is a light blue */
 }
 
+#main {
+  width: 1680px;
+}
+
 #overlay {
 
     position: absolute;
