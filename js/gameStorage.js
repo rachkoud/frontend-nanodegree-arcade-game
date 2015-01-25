@@ -3,6 +3,8 @@
 *  AWS DynamoDB
 */
 var GameStorage = function() {
+    // The DynamoDB table has a hash attribute and range attribute
+    // The range attribute is used to order by score
 
     // Yes the key is key, but the policy allow only to execute a put and a query
     // And and there is an alerte if the amount of data allowed is over
@@ -20,6 +22,11 @@ GameStorage.prototype.saveScore = function(playerName, score) {
     var currentDate = new Date();
 
     // Save score to remote AWS DynamoDB
+    // As we use the same id 'scores', we only keep
+    // the last score will override the first for simplification
+    // For example if we put :
+    // name = 'Henry', score = 10, then we put
+    // name = 'Jean', score = 10, we will keep the last
     params = { TableName : 'arcade-game',
         Item:{
             id:{S:'scores'},

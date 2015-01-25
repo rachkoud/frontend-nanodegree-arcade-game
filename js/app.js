@@ -69,12 +69,7 @@ GameEntity.prototype.addEntityAndCollisionBorder = function() {
 
 // Enemies our player must avoid
 var Enemy = function() {
-
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    //this.sprite = 'images/enemy-bug.png';
-
+    // Every new bug has a random speed
     this.speed = BUG_SPEEDS[generateRandomInIntRange(BUG_SPEEDS.length)];
 
     GameEntity.call(this, [BUG_START_X, BUG_START_Y[generateRandomInIntRange(BUG_START_Y.length)]], [0, 1102], [101, 76], [0,0], [97,65]);
@@ -83,27 +78,23 @@ var Enemy = function() {
 Enemy.prototype = Object.create(GameEntity.prototype);
 Enemy.prototype.constructor = Enemy;
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+/* Update the enemy's position, required method for game
+*  Parameter: dt, a time delta between ticks
+*/
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-
     // When the bug is out of right border, it starts outside left border
     if (this.pos[0] > NUMBER_OF_COLUMNS *  PLAYER_MOVE_X) {
         this.pos[0] = BUG_START_X;
     }
 
-    // Move bug by speed
+    // Move bug by speed. The enemy move at the same speed
+    // between computers.
     this.pos[0] = this.pos[0] + this.speed * dt;
 }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
-// The player
+/* The player is the hero of the game, he can move, have supermower to
+*  to destroy the enemies.
+*/
 var Player = function(x, y) {
     GameEntity.call(this, [x, y], [0, 47], [101, 107], [16,17], [67,76]);
 

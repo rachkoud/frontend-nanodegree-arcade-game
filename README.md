@@ -31,3 +31,9 @@ Buggy Frogger
 ![Star](/images/star-32-32.png) Destroy enemies.
 
 ![More time](/images/more-time-32-32.png) Get more time.
+
+##References
+
+- [Making Sprite-based Games with Canvas | Blog Post](https://developer.mozilla.org/en/docs/Web/API/window.requestAnimationFrame)
+- [Making Sprite-based Games with Canvas | GitHub](https://github.com/jlongster/canvas-game-bootstrap)
+- [Making Sprite-based Games with Canvas | Play the game](http://jlongster.github.io/canvas-game-bootstrap/)
