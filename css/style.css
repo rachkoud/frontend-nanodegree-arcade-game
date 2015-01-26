@@ -57,15 +57,10 @@ img {
     position: relative;
 }
 
-#scores li {
-    display: inline-block;
-    padding: 0 10px 0 0;
-}
-
 #controls-rewards-scores {
     text-align: center;
 }
 
-#playerName {
-    text-align: center;
+#scores {
+    margin-top: 15px;
 }

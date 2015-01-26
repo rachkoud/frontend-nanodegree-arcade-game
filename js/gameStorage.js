@@ -1,109 +1,41 @@
-/* Game store is used to store and retrieve scores locally (localStorage) and remotely (AWS DynamoDB)
-*  The idea was to keep the best scores and I had to use a remote DB for this, this why I choose
-*  AWS DynamoDB
-*/
+// Game store is used to store and retrieve scores locally (localStorage)
 var GameStorage = function() {
-    // The DynamoDB table has a hash attribute and range attribute
-    // The range attribute is used to order by score
-
-    // Yes the key is key, but the policy allow only to execute a put and a query
-    // And and there is an alerte if the amount of data allowed is over
-    this.dynamodb = new AWS.DynamoDB({
-        accessKeyId : 'AKIAJ5A74GDLUZW5VW5Q',
-        secretAccessKey : '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',
-        region: 'eu-central-1'
-    });
 }
 
-/* Save score in AWS DynamoDB to keep all scores and
-*  in local store to keep the last player scores
+/* Save last score in localStorage
+*  we only keep the last best five scores
 */
-GameStorage.prototype.saveScore = function(playerName, score) {
-    var currentDate = new Date();
+GameStorage.prototype.saveScoreInLocalStorage = function(score) {
+    var yourBestScores = localStorage.getItem('yourBestScores');
 
-    // Save score to remote AWS DynamoDB
-    // As we use the same id 'scores', we only keep
-    // the last score will override the first for simplification
-    // For example if we put :
-    // name = 'Henry', score = 10, then we put
-    // name = 'Jean', score = 10, we will keep the last
-    params = { TableName : 'arcade-game',
-        Item:{
-            id:{S:'scores'},
-            date:{S:currentDate.toUTCString()},
-            name:{S:playerName},
-            score:{N:score.toString()}
-       }
-    };
-
-    this.dynamodb.putItem(params, function(err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-        }
-        else {
-            //console.log(data);           // successful response
-        }
-    });
-
-    // Save my scores to local storage, we only keep the last five scores
-    var myScores = localStorage.getItem('myScores');
-
-    if (myScores == null)
+    if (yourBestScores == null)
     {
-        myScores = [ { name : playerName, score : score } ];
+        yourBestScores = [ score ];
     }
     else {
-        myScores = JSON.parse(myScores);
-        myScores.push({ name : playerName, score : score });
+        yourBestScores = JSON.parse(yourBestScores);
+        yourBestScores.push(score);
     }
 
-    if (myScores.length >= 5) {
-        myScores.splice(6, myScores.length - 5);
+    // Order by best scores
+    yourBestScores.sort(function(a, b){return b-a});
+
+    // We only keep the last best five scores
+    if (yourBestScores.length > 5) {
+        yourBestScores.splice(5, yourBestScores.length - 5);
     }
 
-    localStorage.setItem('myScores', JSON.stringify(myScores));
+    localStorage.setItem('yourBestScores', JSON.stringify(yourBestScores));
 }
 
-/* Get scores from AWS DynamoDB
-*  There scores are order by descending
-*/
-GameStorage.prototype.getRemoteScores = function(callback, context) {
-    var params = {
-        TableName: 'arcade-game', /* required */
-        Limit: 10,
-        ScanIndexForward: true, /* reverse score order */
-        KeyConditions: {
-            id : {
-                AttributeValueList : [{ S : 'scores' }],
-                ComparisonOperator : 'EQ'
-            }
-        }
-    };
+// Get your scores from local storage
+GameStorage.prototype.getYourBestScoresFromLocalStorage = function() {
+    var yourBestScores = localStorage.getItem('yourBestScores');
 
-    this.dynamodb.query(params, function(err, data) {
-        if (err) {
-            // an error occurred
-            console.log(err, err.stack);
-        }
-        else {
-            // successful response
-            var scores = [];
-            data.Items.forEach(function(i) {
-                scores.push({name:i.name.S, score:i.score.N});
-            });
-            return callback.call(context, scores);
-        }
-    });
-}
-
-// Get scores from local storage
-GameStorage.prototype.getLocalScores = function() {
-    var myScores = localStorage.getItem('myScores');
-
-    if (myScores == null) {
+    if (yourBestScores == null) {
         return [];
     }
     else {
-        return JSON.parse(myScores);
+        return JSON.parse(yourBestScores);
     }
 }

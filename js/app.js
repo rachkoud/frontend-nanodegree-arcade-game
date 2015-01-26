@@ -258,7 +258,7 @@ Game.prototype.startNewGame = function() {
     // Start countdown
     this.countdown();
 
-    this.displayYourLastScoresAndWorlwideBestScores();
+    this.displayYourBestScores();
 }
 
 
@@ -344,25 +344,17 @@ Game.prototype.initRewardsRandomly = function() {
     }
 }
 
-/* Display best scores from DynamoDB NoSQL DB and
-*  Display last scores from local storage
-*/
-Game.prototype.displayYourLastScoresAndWorlwideBestScores = function() {
+// Display best scores from local storage
+Game.prototype.displayYourBestScores = function() {
     // Display your last scores
-    this.yourLastScoresUl = document.querySelector("#your-last-scores");
-    this.yourLastScoresUl.innerHTML = '';
-    this.gameStorage.getLocalScores().forEach(function (element, index) {
-        this.yourLastScoresUl.insertAdjacentHTML('beforeend', '<li>' + (index+1) + '. ' + element.name + ' ' + element.score + '.</li>');
-    }, this);
+    var yourBestScoresUl = document.querySelector("#your-best-scores");
+    yourBestScoresUl.innerHTML = '';
 
-    // Display worldwide best scores
-    this.bestScoresUl = document.querySelector("#best-scores");
-    this.bestScoresUl.innerHTML = '';
-    this.gameStorage.getRemoteScores(function(scores) {
-        scores.forEach(function(element, index) {
-            this.bestScoresUl.insertAdjacentHTML('beforeend', '<li>' + (index+1) + '. ' + element.name + ' ' + element.score + '.</li>');
-        }, this);
-    }, this);
+    var yourBestScores = this.gameStorage.getYourBestScoresFromLocalStorage()
+    for (index = 0; index < yourBestScores.length; ++index) {
+        var dotOrComma = index == yourBestScores.length - 1 ? '.' : ',';
+        yourBestScoresUl.insertAdjacentHTML('beforeend', ' ' + (index+1) + '. ' + yourBestScores[index] + dotOrComma);
+    }
 }
 
 /* On game over, we freeze the game, ennemies and player are stopped
@@ -414,8 +406,7 @@ Game.prototype.generateRandomPositionOnThePlayableBoard = function(entityStartY)
 
 // Save score
 Game.prototype.saveScore = function() {
-    var playerName = document.getElementById('playerName').value;
-    this.gameStorage.saveScore(playerName, this.score);
+    this.gameStorage.saveScoreInLocalStorage(this.score);
 }
 
 // Add enemy randomly
@@ -450,7 +441,6 @@ Game.prototype.handleCollisionWithStar = function(enemyIndex) {
         this.gameOver();
     }
 }
-
 
 var game = new Game();
 

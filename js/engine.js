@@ -34,11 +34,6 @@ var Engine = (function(global) {
     canvas.height = ROW_HEIGHT * NUMBER_OF_ROWS;
     gameDiv.appendChild(canvas);
 
-    // Player can restart by pressing the restart button
-    document.getElementById("restart").addEventListener("click", function( event ) {
-        init();
-    }, false);
-
     // Player can save his score and restart the game by pressing the save score and restart button
     document.getElementById("saveScoreAndRestart").addEventListener("click", function( event ) {
         game.saveScore();
