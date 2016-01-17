@@ -37,3 +37,7 @@ Buggy Frogger
 - [Making Sprite-based Games with Canvas | Blog Post](https://developer.mozilla.org/en/docs/Web/API/window.requestAnimationFrame)
 - [Making Sprite-based Games with Canvas | GitHub](https://github.com/jlongster/canvas-game-bootstrap)
 - [Making Sprite-based Games with Canvas | Play the game](http://jlongster.github.io/canvas-game-bootstrap/)
+
+##Documentation
+
+- [Code documentation](http://rachkoud.github.io/frontend-nanodegree-arcade-game/docs/)
