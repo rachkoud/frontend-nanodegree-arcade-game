@@ -1,41 +1,30 @@
-// Game store is used to store and retrieve scores locally (localStorage)
+'use strict';
+
+/**
+ * Game store is used to store and retrieve scores locally (localStorage)
+ * @constructor
+ */
 var GameStorage = function() {
-}
+};
 
-/* Save last score in localStorage
-*  we only keep the last best five scores
-*/
+/**
+ * Save  score in local storage
+ * @param  {Number} score - Score
+ */
 GameStorage.prototype.saveScoreInLocalStorage = function(score) {
-    var yourBestScores = localStorage.getItem('yourBestScores');
+    localStorage.setItem('yourBestScore', score);
+};
 
-    if (yourBestScores == null)
-    {
-        yourBestScores = [ score ];
+/**
+ * Get score from local storage
+ * @return {Number} Score
+ */
+GameStorage.prototype.getYourBestScoreFromLocalStorage = function() {
+    var yourBestScore = localStorage.getItem('yourBestScore');
+
+    if (yourBestScore === null) {
+        return 0;
+    } else {
+        return parseInt(yourBestScore);
     }
-    else {
-        yourBestScores = JSON.parse(yourBestScores);
-        yourBestScores.push(score);
-    }
-
-    // Order by best scores
-    yourBestScores.sort(function(a, b){return b-a});
-
-    // We only keep the last best five scores
-    if (yourBestScores.length > 5) {
-        yourBestScores.splice(5, yourBestScores.length - 5);
-    }
-
-    localStorage.setItem('yourBestScores', JSON.stringify(yourBestScores));
-}
-
-// Get your scores from local storage
-GameStorage.prototype.getYourBestScoresFromLocalStorage = function() {
-    var yourBestScores = localStorage.getItem('yourBestScores');
-
-    if (yourBestScores == null) {
-        return [];
-    }
-    else {
-        return JSON.parse(yourBestScores);
-    }
-}
+};

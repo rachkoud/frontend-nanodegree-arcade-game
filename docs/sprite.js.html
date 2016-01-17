@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sprite.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: sprite.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/*global Resources */
+
+(function() {
+    /**
+     * This sprite animation class has been take from here :
+     * Website : http://jlongster.com/Making-Sprite-based-Games-with-Canvas
+     * GitHub : https://github.com/jlongster/canvas-game-bootstrap
+     * @param {String} Url - Url of the sprite
+     * @param {Number[]} Position of the entity on the sprite [x, y]
+     * @param {Number[]} Size of the entity on the sprite [width, height]
+     * @param {Number} speed - Speed in frames/sec for animating
+     * @param {Number[]} frames - An array of frame indexes for animating: [0, 1, 2, 1]
+     * @param {String} dir - Which direction to move in the sprite map when animating: 'horizontal' (default) or 'vertical'
+     * @param {Boolean} once - True to only run the animation once, defaults to false
+     * @constructor
+     * @memberof Sprite
+     */
+    function Sprite(url, pos, size, speed, frames, dir, once) {
+        this.pos = pos;
+        this.size = size;
+        this.speed = typeof speed === 'number' ? speed : 0;
+        this.frames = frames;
+        this._index = 0;
+        this.url = url;
+        this.dir = dir || 'horizontal';
+        this.once = once;
+    }
+
+    Sprite.prototype = {
+
+        /**
+         * Updat the sprite
+         * @param  {Number} A time delta between ticks
+         * @memberof Sprite
+         */
+        update: function(dt) {
+            this._index += this.speed*dt;
+        },
+
+        /**
+         * Render the sprite on the canvas
+         * @param  {Canvas} Canvas
+         * @memberof Sprite
+         */
+        render: function(ctx) {
+            var frame;
+
+            if (this.speed > 0) {
+                var max = this.frames.length;
+                var idx = Math.floor(this._index);
+                frame = this.frames[idx % max];
+
+                if (this.once &amp;&amp; idx >= max) {
+                    this.done = true;
+                    return;
+                }
+            } else {
+                frame = 0;
+            }
+
+            var x = this.pos[0];
+            var y = this.pos[1];
+
+            if (this.dir == 'vertical') {
+                y += frame * this.size[1];
+            } else {
+                x += frame * this.size[0];
+            }
+
+            ctx.drawImage(Resources.get(this.url), x, y, this.size[0], this.size[1], 0, 0, this.size[0], this.size[1]);
+        }
+    };
+
+    window.Sprite = Sprite;
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Enemy.html">Enemy</a></li><li><a href="Game.html">Game</a></li><li><a href="Game_startNewGame.html">startNewGame</a></li><li><a href="GameEntity.html">GameEntity</a></li><li><a href="GameStorage.html">GameStorage</a></li><li><a href="Gem.html">Gem</a></li><li><a href="MoreTime.html">MoreTime</a></li><li><a href="Player.html">Player</a></li><li><a href="Sprite.Sprite.html">Sprite</a></li><li><a href="Star.html">Star</a></li></ul><h3>Namespaces</h3><ul><li><a href="Engine.html">Engine</a></li><li><a href="Ressources.html">Ressources</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BUG_SPEEDS">BUG_SPEEDS</a></li><li><a href="global.html#BUG_START_X">BUG_START_X</a></li><li><a href="global.html#BUG_START_Y">BUG_START_Y</a></li><li><a href="global.html#COLUMN_WIDTH">COLUMN_WIDTH</a></li><li><a href="global.html#ctx">ctx</a></li><li><a href="global.html#game">game</a></li><li><a href="global.html#GEM_MIN_START_Y">GEM_MIN_START_Y</a></li><li><a href="global.html#GEM_TYPES">GEM_TYPES</a></li><li><a href="global.html#generateRandomInIntRange">generateRandomInIntRange</a></li><li><a href="global.html#MORE_TIME_MIN_START_Y">MORE_TIME_MIN_START_Y</a></li><li><a href="global.html#NUMBER_OF_COLUMNS">NUMBER_OF_COLUMNS</a></li><li><a href="global.html#NUMBER_OF_ROWS">NUMBER_OF_ROWS</a></li><li><a href="global.html#PLAYER_MOVE_X">PLAYER_MOVE_X</a></li><li><a href="global.html#PLAYER_MOVE_Y">PLAYER_MOVE_Y</a></li><li><a href="global.html#PLAYER_START">PLAYER_START</a></li><li><a href="global.html#Resources">Resources</a></li><li><a href="global.html#ROW_HEIGHT">ROW_HEIGHT</a></li><li><a href="global.html#STAR_MIN_START_Y">STAR_MIN_START_Y</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 17 2016 08:27:16 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

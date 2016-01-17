@@ -1,4 +1,32 @@
-'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: engine.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: engine.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 
 /*global COLUMN_WIDTH, NUMBER_OF_COLUMNS, NUMBER_OF_ROWS, ROW_HEIGHT, game, Resources */
 /* exported Engine, */
@@ -154,7 +182,7 @@ var Engine = (function(global) {
     * @alias Engine.checkCollisions
     */
     function checkCollisions() {
-        for(var i=0; i<game.allEnemies.length; i++) {
+        for(var i=0; i&lt;game.allEnemies.length; i++) {
             // Check if player collides with an enemy
             if (entitiesCollides(game.allEnemies[i], game.player)) {
                 game.handleCollisionWithStar(i);
@@ -220,7 +248,7 @@ var Engine = (function(global) {
 
    /**
     * r is the x coordinate of the right side of box 1 and x2 is the x coordinate of the left side of box 2,
-    * if r <= x2 is true then there's a gap and no matter any other positions or sizes of the boxes there cannot be an overlap,
+    * if r &lt;= x2 is true then there's a gap and no matter any other positions or sizes of the boxes there cannot be an overlap,
     * so there is no collision. There are 4 checks: one for each sides of the boxes. If there's ever a gap: no collision.
     * more information here : http://jlongster.com/Making-Sprite-based-Games-with-Canvas
     * @param  {Number} x - X position of box 1
@@ -235,8 +263,8 @@ var Engine = (function(global) {
     * @alias Engine.collides
     */
     function collides(x, y, r, b, x2, y2, r2, b2) {
-        return !(r <= x2 || x > r2 ||
-                 b <= y2 || y > b2);
+        return !(r &lt;= x2 || x > r2 ||
+                 b &lt;= y2 || y > b2);
     }
 
     /**
@@ -256,7 +284,7 @@ var Engine = (function(global) {
         });
 
         // Update all the explosions
-        for(var i=0; i<game.allEnemiesExplosions.length; i++) {
+        for(var i=0; i&lt;game.allEnemiesExplosions.length; i++) {
             game.allEnemiesExplosions[i].sprite.update(dt);
 
             // Remove if animation is done
@@ -293,8 +321,8 @@ var Engine = (function(global) {
          * and, using the rowImages array, draw the correct image for that
          * portion of the 'grid'
          */
-        for (row = 0; row < NUMBER_OF_ROWS; row++) {
-            for (col = 0; col < NUMBER_OF_COLUMNS; col++) {
+        for (row = 0; row &lt; NUMBER_OF_ROWS; row++) {
+            for (col = 0; col &lt; NUMBER_OF_COLUMNS; col++) {
                 /* The drawImage function of the canvas' context element
                  * requires 3 parameters: the image to draw, the x coordinate
                  * to start drawing and the y coordinate to start drawing.
@@ -376,4 +404,26 @@ var Engine = (function(global) {
      * @global
      */
     global.ctx = ctx;
-})(this);
+})(this);</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Enemy.html">Enemy</a></li><li><a href="Game.html">Game</a></li><li><a href="Game_startNewGame.html">startNewGame</a></li><li><a href="GameEntity.html">GameEntity</a></li><li><a href="GameStorage.html">GameStorage</a></li><li><a href="Gem.html">Gem</a></li><li><a href="MoreTime.html">MoreTime</a></li><li><a href="Player.html">Player</a></li><li><a href="Sprite.Sprite.html">Sprite</a></li><li><a href="Star.html">Star</a></li></ul><h3>Namespaces</h3><ul><li><a href="Engine.html">Engine</a></li><li><a href="Ressources.html">Ressources</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BUG_SPEEDS">BUG_SPEEDS</a></li><li><a href="global.html#BUG_START_X">BUG_START_X</a></li><li><a href="global.html#BUG_START_Y">BUG_START_Y</a></li><li><a href="global.html#COLUMN_WIDTH">COLUMN_WIDTH</a></li><li><a href="global.html#ctx">ctx</a></li><li><a href="global.html#game">game</a></li><li><a href="global.html#GEM_MIN_START_Y">GEM_MIN_START_Y</a></li><li><a href="global.html#GEM_TYPES">GEM_TYPES</a></li><li><a href="global.html#generateRandomInIntRange">generateRandomInIntRange</a></li><li><a href="global.html#MORE_TIME_MIN_START_Y">MORE_TIME_MIN_START_Y</a></li><li><a href="global.html#NUMBER_OF_COLUMNS">NUMBER_OF_COLUMNS</a></li><li><a href="global.html#NUMBER_OF_ROWS">NUMBER_OF_ROWS</a></li><li><a href="global.html#PLAYER_MOVE_X">PLAYER_MOVE_X</a></li><li><a href="global.html#PLAYER_MOVE_Y">PLAYER_MOVE_Y</a></li><li><a href="global.html#PLAYER_START">PLAYER_START</a></li><li><a href="global.html#Resources">Resources</a></li><li><a href="global.html#ROW_HEIGHT">ROW_HEIGHT</a></li><li><a href="global.html#STAR_MIN_START_Y">STAR_MIN_START_Y</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 17 2016 08:27:16 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

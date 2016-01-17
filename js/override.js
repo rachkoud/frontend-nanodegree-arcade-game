@@ -1,3 +1,5 @@
+'use strict';
+
 // Enable the passage of the 'this' object through the JavaScript timers
 
 var __nativeST__ = window.setTimeout, __nativeSI__ = window.setInterval;
